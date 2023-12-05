@@ -1,0 +1,36 @@
+from selenium import webdrive
+import time
+
+driver = webdriver.Chrome ('C:\Program Files\Google\Chrome\Application\chrome.exe')
+driver.get('https://www.linkedin.com')
+time.sleep(2)
+
+# LOG IN
+
+username = driver.find_element_by_xpatch("//input[@name='session_key']")
+password = driver.find_element_by_xpatch("//input'[@name='session_password']")
+
+username.send_keys('your username')
+password.send_keys('your password')
+time.sleep(2)
+
+
+submit = driver.find_element_by_xpatch("//button[@type='submit']").click()
+
+driver.get("https://www.linkedin.com/search/results/people/?keywords=desenvolvedor&origin=SWITCH_SEARCH_VERTICAL&sid=zPz")
+time.sleep(2)
+
+# ADD CONTACTS
+
+all_buttons = driver.find_elements_by_tag_name("button")
+connect_button = [btn for btn in all_buttons if btn.text == "Connect"]
+
+for btn in connect_button:
+    driver.execute_script("arguments[0].click();", bnt)
+    time.sleep(2)
+    send = driver.find_element_by_xpath("//button[@aria-label= 'Send now']")
+    driver.execute_script("arguments[0].click();", send)
+    close = driver.find_element_by_xpath("//button[@aria-label= 'Dismiss']")
+    driver.execute_script("arguments[0].click();", close)
+    time.sleep(2)
+
